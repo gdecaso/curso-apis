@@ -86,5 +86,24 @@ public class HelloWorldServer {
       responseObserver.onNext(reply);
       responseObserver.onCompleted();
     }
+
+    @Override
+    public void factorial(FactorialRequest request, StreamObserver<FactorialReply> responseObserver) {
+      long result = computeFactorial(request.getN());
+      FactorialReply reply = FactorialReply.newBuilder().setResult(result).build();
+      responseObserver.onNext(reply);
+      responseObserver.onCompleted();
+    }
+
+  }
+
+  private static long computeFactorial(int n) {
+    if (n < 0) {
+      throw new IllegalArgumentException("Factorial de un numero negativo no está definido");
+    } else if (n == 0) {
+      return 1;
+    } else {
+      return n * computeFactorial(n - 1);
+    }
   }
 }

@@ -24,6 +24,8 @@ package helloworld;
 service Greeter {
   // Sends a greeting
   rpc SayHello (HelloRequest) returns (HelloReply) {}
+
+  rpc Factorial (FactorialRequest) returns (FactorialReply) {}
 }
 
 // The request message containing the user's name.
@@ -34,4 +36,12 @@ message HelloRequest {
 // The response message containing the greetings
 message HelloReply {
   string message = 1;
+}
+
+// Mensajes para factorial
+message FactorialRequest {
+  int32 n = 1;
+}
+message FactorialReply {
+  int64 result = 1;
 }
