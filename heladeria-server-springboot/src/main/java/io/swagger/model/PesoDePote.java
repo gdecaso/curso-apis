@@ -10,17 +10,16 @@ import javax.validation.constraints.*;
 import com.fasterxml.jackson.annotation.JsonCreator;
 
 /**
- * categoría de gustos de helado
+ * peso de un pote de helado en gramos
  */
-public enum TipoDeGusto {
-  CHOCOLATES("chocolates"),
-    DULCE_DE_LECHES("dulce de leches"),
-    CREMAS("cremas"),
-    FRUTAS("frutas");
+public enum PesoDePote {
+  _1000("1000"),
+    _500("500"),
+    _250("250");
 
   private String value;
 
-  TipoDeGusto(String value) {
+  PesoDePote(String value) {
     this.value = value;
   }
 
@@ -31,8 +30,8 @@ public enum TipoDeGusto {
   }
 
   @JsonCreator
-  public static TipoDeGusto fromValue(String text) {
-    for (TipoDeGusto b : TipoDeGusto.values()) {
+  public static PesoDePote fromValue(String text) {
+    for (PesoDePote b : PesoDePote.values()) {
       if (String.valueOf(b.value).equals(text)) {
         return b;
       }

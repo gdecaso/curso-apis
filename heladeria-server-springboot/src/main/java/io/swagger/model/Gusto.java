@@ -10,10 +10,11 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * Gusto
+ * un gusto de helado
  */
+@Schema(description = "un gusto de helado")
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-04-30T15:06:41.432Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-04-30T16:07:57.842Z[GMT]")
 
 
 public class Gusto   {
@@ -75,8 +76,9 @@ public class Gusto   {
    * Get tipo
    * @return tipo
    **/
-  @Schema(description = "")
-  
+  @Schema(required = true, description = "")
+      @NotNull
+
     @Valid
     public TipoDeGusto getTipo() {
     return tipo;
