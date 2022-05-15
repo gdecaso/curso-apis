@@ -1,0 +1,33 @@
+openapi: 3.0.0
+info:
+  description: |
+    API de la Heladería Via Apilia. A través de esta API se pueden consultar
+    los gustos de helado y realizar pedidos.
+  version: "1.0.0"
+  title: Heladería Via Apilia
+  contact:
+    email: devs@heladeria-apilia.com
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+servers:
+  - url: 'https://api.heladeria-apilia.com'
+paths:
+  /gustos:
+    get:
+      description: Listar los gustos de helado
+      responses:
+        '200':
+          description: Estos son los gustos de helado
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+
+components:
+  schemas:
+    Gusto:
+      description: un gusto de helado
+      type: object
