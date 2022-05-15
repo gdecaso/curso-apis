@@ -290,6 +290,7 @@ components:
           vencimientoTarjetaAnio:
             type: number
             format: int8
+            minimum: 0
             maximum: 99
             description: el año de vencimiento de la tarjeta expresado en dos dígitos
             example: 24
