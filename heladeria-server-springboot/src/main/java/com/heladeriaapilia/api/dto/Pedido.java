@@ -1,4 +1,4 @@
-package com.heladeriaapilia.model;
+package com.heladeriaapilia.api.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;

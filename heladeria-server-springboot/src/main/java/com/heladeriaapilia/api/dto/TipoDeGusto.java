@@ -1,20 +1,21 @@
-package com.heladeriaapilia.model;
+package com.heladeriaapilia.api.dto;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 
 /**
- * peso de un pote de helado en gramos
+ * categoría de gustos de helado
  */
-public enum PesoDePote {
-  _1000("1000"),
-    _500("500"),
-    _250("250");
+public enum TipoDeGusto {
+  CHOCOLATES("chocolates"),
+    DULCE_DE_LECHES("dulce de leches"),
+    CREMAS("cremas"),
+    FRUTAS("frutas");
 
   private String value;
 
-  PesoDePote(String value) {
+  TipoDeGusto(String value) {
     this.value = value;
   }
 
@@ -25,8 +26,8 @@ public enum PesoDePote {
   }
 
   @JsonCreator
-  public static PesoDePote fromValue(String text) {
-    for (PesoDePote b : PesoDePote.values()) {
+  public static TipoDeGusto fromValue(String text) {
+    for (TipoDeGusto b : TipoDeGusto.values()) {
       if (String.valueOf(b.value).equals(text)) {
         return b;
       }

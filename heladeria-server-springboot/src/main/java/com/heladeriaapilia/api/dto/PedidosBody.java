@@ -1,42 +1,41 @@
-package com.heladeriaapilia.model;
+package com.heladeriaapilia.api.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.validation.annotation.Validated;
 
-import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 /**
- * hypermedia links de un gusto dentro de un pote
+ * PedidosBody
  */
-@Schema(description = "hypermedia links de un gusto dentro de un pote")
 @Validated
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-05-19T17:06:40.309Z[GMT]")
 
 
-public class PoteLinks   {
-  @JsonProperty("self")
-  private Link self = null;
+public class PedidosBody   {
+  @JsonProperty("direccion_entrega")
+  private String direccionEntrega = null;
 
-  public PoteLinks self(Link self) {
-    this.self = self;
+  public PedidosBody direccionEntrega(String direccionEntrega) {
+    this.direccionEntrega = direccionEntrega;
     return this;
   }
 
   /**
-   * Get self
-   * @return self
+   * dirección en la que se ha de entregar este pedido
+   * @return direccionEntrega
    **/
-  @Schema(description = "")
-  
-    @Valid
-    public Link getSelf() {
-    return self;
+  @Schema(required = true, description = "dirección en la que se ha de entregar este pedido")
+      @NotNull
+
+    public String getDireccionEntrega() {
+    return direccionEntrega;
   }
 
-  public void setSelf(Link self) {
-    this.self = self;
+  public void setDireccionEntrega(String direccionEntrega) {
+    this.direccionEntrega = direccionEntrega;
   }
 
 
@@ -48,21 +47,21 @@ public class PoteLinks   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    PoteLinks poteLinks = (PoteLinks) o;
-    return Objects.equals(this.self, poteLinks.self);
+    PedidosBody pedidosBody = (PedidosBody) o;
+    return Objects.equals(this.direccionEntrega, pedidosBody.direccionEntrega);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(self);
+    return Objects.hash(direccionEntrega);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class PoteLinks {\n");
+    sb.append("class PedidosBody {\n");
     
-    sb.append("    self: ").append(toIndentedString(self)).append("\n");
+    sb.append("    direccionEntrega: ").append(toIndentedString(direccionEntrega)).append("\n");
     sb.append("}");
     return sb.toString();
   }

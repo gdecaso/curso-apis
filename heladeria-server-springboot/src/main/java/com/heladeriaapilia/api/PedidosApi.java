@@ -5,13 +5,13 @@
  */
 package com.heladeriaapilia.api;
 
-import com.heladeriaapilia.model.DatosDePago;
-import com.heladeriaapilia.model.Pago;
-import com.heladeriaapilia.model.Pedido;
-import com.heladeriaapilia.model.PedidoIdPotesBody;
-import com.heladeriaapilia.model.PedidosBody;
-import com.heladeriaapilia.model.PedidosPedidoIdBody;
-import com.heladeriaapilia.model.Pote;
+import com.heladeriaapilia.api.dto.DatosDePago;
+import com.heladeriaapilia.api.dto.Pago;
+import com.heladeriaapilia.api.dto.Pedido;
+import com.heladeriaapilia.api.dto.PedidoIdPotesBody;
+import com.heladeriaapilia.api.dto.PedidosBody;
+import com.heladeriaapilia.api.dto.PedidosPedidoIdBody;
+import com.heladeriaapilia.api.dto.Pote;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;

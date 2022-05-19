@@ -1,9 +1,9 @@
 package com.heladeriaapilia.api;
 
-import com.heladeriaapilia.model.TipoDeGusto;
+import com.heladeriaapilia.api.dto.TipoDeGusto;
 import com.heladeriaapilia.service.GustoService;
 import com.heladeriaapilia.api.mapper.GustoMapper;
-import com.heladeriaapilia.model.Gusto;
+import com.heladeriaapilia.api.dto.Gusto;
 import com.heladeriaapilia.repository.GustoData;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;

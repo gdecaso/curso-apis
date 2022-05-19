@@ -1,10 +1,10 @@
 package com.heladeriaapilia.api.mapper;
 
 import com.heladeriaapilia.repository.PedidoData;
-import com.heladeriaapilia.model.Pedido;
-import com.heladeriaapilia.model.PesoDePote;
-import com.heladeriaapilia.model.Pote;
-import com.heladeriaapilia.model.PoteGustos;
+import com.heladeriaapilia.api.dto.Pedido;
+import com.heladeriaapilia.api.dto.PesoDePote;
+import com.heladeriaapilia.api.dto.Pote;
+import com.heladeriaapilia.api.dto.PoteGustos;
 import com.heladeriaapilia.repository.PoteData;
 import com.heladeriaapilia.repository.PoteData.PesoDePoteData;
 import org.springframework.stereotype.Component;
