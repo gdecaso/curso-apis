@@ -73,7 +73,12 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Pedido'
+              type: object
+              properties:
+                direccion_entrega:
+                  type: string
+                  description: dirección en la que se ha de entregar este pedido
+              required: [direccion_entrega]
       responses:
         '200':
           description: El pedido ha sido actualizado
@@ -124,9 +129,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items: 
-                  $ref: '#/components/schemas/Pote'
+                $ref: '#/components/schemas/Pote'
         '404':
           description: No se conoce un pedido con tal id
   /pedidos/{pedidoId}/potes/{poteId}:
@@ -272,6 +275,8 @@ components:
           type: object
           description: hypermedia links de un pote
           properties:
+            pedido:
+              $ref: '#/components/schemas/Link'
             borrar: 
               $ref: '#/components/schemas/Link'
       required: [id, peso, gustos]
