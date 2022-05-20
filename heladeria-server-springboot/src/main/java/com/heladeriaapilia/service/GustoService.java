@@ -1,7 +1,7 @@
 package com.heladeriaapilia.service;
 
-import com.heladeriaapilia.repository.GustoData;
-import com.heladeriaapilia.repository.GustoData.TipoDeGustoData;
+import com.heladeriaapilia.model.GustoData;
+import com.heladeriaapilia.model.GustoData.TipoDeGustoData;
 import com.heladeriaapilia.repository.GustoDataRepository;
 import org.springframework.stereotype.Component;
 

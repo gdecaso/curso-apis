@@ -4,7 +4,7 @@ import com.heladeriaapilia.api.dto.TipoDeGusto;
 import com.heladeriaapilia.service.GustoService;
 import com.heladeriaapilia.api.mapper.GustoMapper;
 import com.heladeriaapilia.api.dto.Gusto;
-import com.heladeriaapilia.repository.GustoData;
+import com.heladeriaapilia.model.GustoData;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import io.swagger.v3.oas.annotations.media.Schema;

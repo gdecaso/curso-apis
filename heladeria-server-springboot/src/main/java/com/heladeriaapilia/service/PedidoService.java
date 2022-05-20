@@ -1,9 +1,9 @@
 package com.heladeriaapilia.service;
 
-import com.heladeriaapilia.repository.PedidoData;
+import com.heladeriaapilia.model.PedidoData;
 import com.heladeriaapilia.repository.PedidoDataRepository;
-import com.heladeriaapilia.repository.PoteData;
-import com.heladeriaapilia.repository.PoteData.PesoDePoteData;
+import com.heladeriaapilia.model.PoteData;
+import com.heladeriaapilia.model.PoteData.PesoDePoteData;
 import com.heladeriaapilia.repository.PoteDataRepository;
 import org.springframework.stereotype.Component;
 

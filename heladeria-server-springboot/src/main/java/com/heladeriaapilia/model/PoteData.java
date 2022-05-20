@@ -1,4 +1,4 @@
-package com.heladeriaapilia.repository;
+package com.heladeriaapilia.model;
 
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;

@@ -1,6 +1,7 @@
 package com.heladeriaapilia.repository;
 
-import com.heladeriaapilia.repository.GustoData.TipoDeGustoData;
+import com.heladeriaapilia.model.GustoData;
+import com.heladeriaapilia.model.GustoData.TipoDeGustoData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;

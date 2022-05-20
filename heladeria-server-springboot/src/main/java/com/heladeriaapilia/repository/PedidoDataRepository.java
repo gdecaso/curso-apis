@@ -1,5 +1,7 @@
 package com.heladeriaapilia.repository;
 
+import com.heladeriaapilia.model.PedidoData;
+
 import java.util.List;
 import java.util.Optional;
 

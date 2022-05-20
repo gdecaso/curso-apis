@@ -2,8 +2,8 @@ package com.heladeriaapilia.api.mapper;
 
 import com.heladeriaapilia.api.dto.Gusto;
 import com.heladeriaapilia.api.dto.TipoDeGusto;
-import com.heladeriaapilia.repository.GustoData;
-import com.heladeriaapilia.repository.GustoData.TipoDeGustoData;
+import com.heladeriaapilia.model.GustoData;
+import com.heladeriaapilia.model.GustoData.TipoDeGustoData;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
