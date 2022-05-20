@@ -12,20 +12,20 @@ import java.util.stream.Collectors;
 @Component
 public class GustoMapper {
 
-    public List<Gusto> dataToApi(List<GustoData> gustoDatas) {
+    public List<Gusto> dataToApiGustos(List<GustoData> gustoDatas) {
         return gustoDatas.stream()
-                .map(this::dataToApi)
+                .map(this::dataToApiGusto)
                 .collect(Collectors.toList());
     }
 
-    public Gusto dataToApi(GustoData gustoData) {
+    public Gusto dataToApiGusto(GustoData gustoData) {
         return new Gusto()
                 .id(gustoData.getId())
                 .name(gustoData.getName())
-                .tipo(dataToApi(gustoData.getTipo()));
+                .tipo(dataToApiTipo(gustoData.getTipo()));
     }
 
-    public TipoDeGusto dataToApi(TipoDeGustoData tipoData) {
+    public TipoDeGusto dataToApiTipo(TipoDeGustoData tipoData) {
         switch (tipoData) {
             case CHOCOLATES:
                 return TipoDeGusto.CHOCOLATES;
@@ -39,7 +39,7 @@ public class GustoMapper {
         throw new IllegalArgumentException("Imposible traducir " + tipoData);
     }
 
-    public TipoDeGustoData apiToData(TipoDeGusto tipo) {
+    public TipoDeGustoData apiToDataTipo(TipoDeGusto tipo) {
         switch (tipo) {
             case CHOCOLATES:
                 return TipoDeGustoData.CHOCOLATES;

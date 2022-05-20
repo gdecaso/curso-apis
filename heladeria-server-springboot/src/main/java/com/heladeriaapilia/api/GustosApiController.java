@@ -38,13 +38,14 @@ public class GustosApiController implements GustosApi {
         this.request = request;
     }
 
+    @Override
     public ResponseEntity<List<Gusto>> gustosGet(
             @Parameter(in = ParameterIn.QUERY, description = "" ,schema=@Schema())
             @Valid
             @RequestParam(value = "tipo", required = false) TipoDeGusto tipo) {
         List<GustoData> gustos = tipo != null ?
-                gustoService.getGustosByTipo(gustoMapper.apiToData(tipo)) :
+                gustoService.getGustosByTipo(gustoMapper.apiToDataTipo(tipo)) :
                 gustoService.getGustos();
-        return new ResponseEntity<>(gustoMapper.dataToApi(gustos), HttpStatus.OK);
+        return new ResponseEntity<>(gustoMapper.dataToApiGustos(gustos), HttpStatus.OK);
     }
 }

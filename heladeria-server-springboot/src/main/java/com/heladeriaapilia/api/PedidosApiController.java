@@ -49,25 +49,28 @@ public class PedidosApiController implements PedidosApi {
         this.request = request;
     }
 
+    @Override
     public ResponseEntity<Pedido> pedidosPedidoIdGet(
             @Parameter(in = ParameterIn.PATH, description = "id del pedido", required=true, schema=@Schema())
             @PathVariable("pedidoId") Integer pedidoId) {
         return pedidoService.findPedidoById(pedidoId)
-                .map(pedidoMapper::dataToApi)
+                .map(pedidoMapper::dataToApiPedido)
                 .map(pedido -> new ResponseEntity<>(pedido, HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
+    @Override
     public ResponseEntity<List<Pote>> pedidosPedidoIdPotesGet(
             @Parameter(in = ParameterIn.PATH, description = "id del pedido", required=true, schema=@Schema())
             @PathVariable("pedidoId") Integer pedidoId) {
         return pedidoService.findPedidoById(pedidoId)
                 .map(PedidoData::getPotes)
-                .map(pedidoMapper::dataToApi)
+                .map(pedidoMapper::dataToApiPotes)
                 .map(pedido -> new ResponseEntity<>(pedido, HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
+    @Override
     public ResponseEntity<Pote> pedidosPedidoIdPotesPost(
             @Parameter(in = ParameterIn.PATH, description = "id del pedido", required=true, schema=@Schema())
             @PathVariable("pedidoId") Integer pedidoId,
@@ -76,12 +79,13 @@ public class PedidosApiController implements PedidosApi {
         Optional<PedidoData> maybePedido = pedidoService.findPedidoById(pedidoId);
         if (maybePedido.isPresent()) {
             PedidoData pedido = maybePedido.get();
-            PoteData pote = pedidoService.addPoteToPedido(pedido, pedidoMapper.apiToData(body.getPeso()), body.getGustos());
-            return new ResponseEntity<>(pedidoMapper.dataToApi(pote), HttpStatus.OK);
+            PoteData pote = pedidoService.addPoteToPedido(pedido, pedidoMapper.apiToDataPeso(body.getPeso()), body.getGustos());
+            return new ResponseEntity<>(pedidoMapper.dataToApiPote(pote), HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
+    @Override
     public ResponseEntity<Void> pedidosPedidoIdPotesPoteIdDelete(
             @Parameter(in = ParameterIn.PATH, description = "id del pedido", required=true, schema=@Schema())
             @PathVariable("pedidoId") Integer pedidoId,
@@ -102,6 +106,7 @@ public class PedidosApiController implements PedidosApi {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
+    @Override
     public ResponseEntity<Pedido> pedidosPedidoIdPut(
             @Parameter(in = ParameterIn.PATH, description = "id del pedido", required=true, schema=@Schema())
             @PathVariable("pedidoId") Integer pedidoId,
@@ -111,16 +116,17 @@ public class PedidosApiController implements PedidosApi {
         if (maybePedido.isPresent()) {
             PedidoData pedido = maybePedido.get();
             pedido = pedidoService.updateDireccionDeEntrega(pedido, body.getDireccionEntrega());
-            return new ResponseEntity<>(pedidoMapper.dataToApi(pedido), HttpStatus.OK);
+            return new ResponseEntity<>(pedidoMapper.dataToApiPedido(pedido), HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
+    @Override
     public ResponseEntity<Pedido> pedidosPost(
             @Parameter(in = ParameterIn.DEFAULT, description = "", schema=@Schema())
             @Valid @RequestBody PedidosBody body) {
         PedidoData pedido = pedidoService.createPedido(body.getDireccionEntrega());
-        return new ResponseEntity<>(pedidoMapper.dataToApi(pedido), HttpStatus.CREATED);
+        return new ResponseEntity<>(pedidoMapper.dataToApiPedido(pedido), HttpStatus.CREATED);
     }
 
     @Override

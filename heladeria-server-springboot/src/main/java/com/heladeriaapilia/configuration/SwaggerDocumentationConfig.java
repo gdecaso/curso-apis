@@ -31,7 +31,6 @@ public class SwaggerDocumentationConfig {
     ApiInfo apiInfo() {
         return new ApiInfoBuilder()
             .title("Heladería Via Apilia")
-            .description("This is a sample Petstore server.  You can find out more about Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/). ")
             .license("Apache 2.0")
             .licenseUrl("http://www.apache.org/licenses/LICENSE-2.0.html")
             .termsOfServiceUrl("")
@@ -45,7 +44,6 @@ public class SwaggerDocumentationConfig {
         return new OpenAPI()
             .info(new Info()
                 .title("Heladería Via Apilia")
-                .description("This is a sample Petstore server.  You can find out more about Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/). ")
                 .termsOfService("")
                 .version("1.0.0")
                 .license(new License()

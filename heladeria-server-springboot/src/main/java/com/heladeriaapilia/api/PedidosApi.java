@@ -73,5 +73,10 @@ public interface PedidosApi {
     @ApiResponses(value = {@ApiResponse(responseCode = "201", description = "El pedido ha sido creado", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Pedido.class)))})
     @RequestMapping(value = "/pedidos", produces = {"application/json"}, consumes = {"application/json"}, method = RequestMethod.POST)
     ResponseEntity<Pedido> pedidosPost(@Parameter(in = ParameterIn.DEFAULT, description = "", schema = @Schema()) @Valid @RequestBody PedidosBody body);
+
+//    @Operation(summary = "", description = "Listar los pedidos", tags = {})
+//    @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "El listado de pedidos", content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Pedido.class))))})
+//    @RequestMapping(value = "/pedidos", produces = {"application/json"}, method = RequestMethod.GET)
+//    ResponseEntity<List<Pedido>> pedidosGet();
 }
 
