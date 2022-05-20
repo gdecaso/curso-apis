@@ -15,4 +15,4 @@ t.tmp
 *.iml
 build/
 .gradle/
-
+heladeria-api-mock/node_modules

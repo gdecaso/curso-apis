@@ -1,0 +1,628 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "contact": {
+      "email": "devs@heladeria-apilia.com"
+    },
+    "description": "API de la Heladería Via Apilia. A través de esta API se pueden consultar\nlos gustos de helado y realizar pedidos.\n",
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    },
+    "title": "Heladería Via Apilia",
+    "version": "1.0.0"
+  },
+  "host": "api.heladeria-apilia.com",
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/gustos": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "description": "categoría de gustos de helado",
+            "enum": [
+              "chocolates",
+              "dulce de leches",
+              "cremas",
+              "frutas"
+            ],
+            "in": "query",
+            "name": "tipo",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Estos son los gustos de helado",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/Gusto"
+              },
+              "type": "array"
+            }
+          }
+        },
+        "description": "Listar los gustos de helado"
+      }
+    },
+    "/pedidos": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "La list ade pedidos",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Pedido"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "properties": {
+                "direccion_entrega": {
+                  "description": "dirección en la que se ha de entregar este pedido",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "direccion_entrega"
+              ],
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "El pedido ha sido creado",
+            "schema": {
+              "$ref": "#/definitions/Pedido"
+            }
+          }
+        },
+        "description": "Crear un nuevo pedido a la dirección indicada"
+      }
+    },
+    "/pedidos/{pedidoId}": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "description": "id del pedido",
+            "in": "path",
+            "name": "pedidoId",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "El pedido ha sido hallado",
+            "schema": {
+              "$ref": "#/definitions/Pedido"
+            }
+          },
+          "404": {
+            "description": "No se conoce un pedido con tal id"
+          }
+        },
+        "description": "Ver un pedido particular"
+      },
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "description": "id del pedido",
+            "in": "path",
+            "name": "pedidoId",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "properties": {
+                "direccion_entrega": {
+                  "description": "dirección en la que se ha de entregar este pedido",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "direccion_entrega"
+              ],
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "El pedido ha sido actualizado",
+            "schema": {
+              "$ref": "#/definitions/Pedido"
+            }
+          },
+          "404": {
+            "description": "No se conoce un pedido con tal id"
+          }
+        },
+        "description": "Cambiar los datos de un pedido particular"
+      }
+    },
+    "/pedidos/{pedidoId}/pagar": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "description": "id del pedido",
+            "in": "path",
+            "name": "pedidoId",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/DatosDePago"
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Los datos de pago han sido recibidos y serán procesados"
+          },
+          "404": {
+            "description": "No se conoce un pedido con tal id"
+          }
+        },
+        "description": "Inicia el pago del pedido"
+      }
+    },
+    "/pedidos/{pedidoId}/pago": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "description": "id del pedido",
+            "in": "path",
+            "name": "pedidoId",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Este es el estado del pago del pedido",
+            "schema": {
+              "$ref": "#/definitions/Pago"
+            }
+          },
+          "404": {
+            "description": "No se conoce un pedido con tal id"
+          }
+        },
+        "description": "Ver el estado del pago de un pedido particular"
+      }
+    },
+    "/pedidos/{pedidoId}/potes": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "description": "id del pedido",
+            "in": "path",
+            "name": "pedidoId",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Los potes del pedido",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/Pote"
+              },
+              "type": "array"
+            }
+          },
+          "404": {
+            "description": "No se conoce un pedido con tal id"
+          }
+        },
+        "description": "Lista los potes que componen un pedido"
+      },
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "description": "id del pedido",
+            "in": "path",
+            "name": "pedidoId",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "properties": {
+                "gustos": {
+                  "description": "los gustos de helado en este pote",
+                  "example": [
+                    "ddl",
+                    "pist"
+                  ],
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "peso": {
+                  "$ref": "#/definitions/PesoDePote"
+                }
+              },
+              "required": [
+                "peso",
+                "gustos"
+              ],
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "El pote fue agregado al pedido",
+            "schema": {
+              "$ref": "#/definitions/Pote"
+            }
+          },
+          "404": {
+            "description": "No se conoce un pedido con tal id"
+          }
+        },
+        "description": "Agrega un pote a un pedido"
+      }
+    },
+    "/pedidos/{pedidoId}/potes/{poteId}": {
+      "delete": {
+        "parameters": [
+          {
+            "description": "id del pedido",
+            "in": "path",
+            "name": "pedidoId",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "description": "id del pote",
+            "in": "path",
+            "name": "poteId",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "El pote fue quitado del pedido"
+          },
+          "404": {
+            "description": "No se conoce un pedido y/o pote con tal id"
+          }
+        },
+        "description": "quitar un pote de un pedido"
+      }
+    }
+  },
+  "definitions": {
+    "DatosDePago": {
+      "description": "los datos necesarios para iniciar el pago de un pedido",
+      "discriminator": "tipoDePago",
+      "properties": {
+        "tipoDePago": {
+          "description": "se usa para determinar el tipo de pago a usar",
+          "type": "string"
+        }
+      },
+      "required": [
+        "tipoDePago"
+      ],
+      "type": "object"
+    },
+    "DatosDePagoBilleteraVirtual": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/DatosDePago"
+        },
+        {
+          "properties": {
+            "alias": {
+              "description": "nombre de usuario o alias de la billetera a utilizar",
+              "example": "mi.cuenta.billetera",
+              "type": "string"
+            }
+          },
+          "required": [
+            "alias"
+          ],
+          "type": "object"
+        }
+      ],
+      "description": "datos de pago cuando se usa una billetera virtual"
+    },
+    "DatosDePagoTarjeta": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/DatosDePago"
+        },
+        {
+          "properties": {
+            "numerosTarjeta": {
+              "description": "los 15 o 16 números de la tarjeta de crédito",
+              "example": "1234567812345678",
+              "type": "string"
+            },
+            "vencimientoTarjetaAnio": {
+              "description": "el año de vencimiento de la tarjeta expresado en dos dígitos",
+              "example": 24,
+              "format": "int8",
+              "maximum": 99,
+              "minimum": 0,
+              "type": "number"
+            },
+            "vencimientoTarjetaMes": {
+              "description": "el mes del vencimiento de la tarjeta de crédito",
+              "example": 4,
+              "format": "int8",
+              "maximum": 6,
+              "minimum": 1,
+              "type": "number"
+            }
+          },
+          "required": [
+            "numerosTarjeta",
+            "vencimientoTarjetaMes",
+            "vencimientoTarjetaAnio"
+          ],
+          "type": "object"
+        }
+      ],
+      "description": "datos de pago cuando se usa tarjeta de crédito"
+    },
+    "Gusto": {
+      "description": "un gusto de helado",
+      "properties": {
+        "id": {
+          "description": "nombre corto que identifica este gusto",
+          "example": "ddl",
+          "type": "string"
+        },
+        "name": {
+          "description": "nombre legible por humanos para este gusto",
+          "example": "Dulce de leche",
+          "type": "string"
+        },
+        "tipo": {
+          "$ref": "#/definitions/TipoDeGusto"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "tipo"
+      ],
+      "type": "object"
+    },
+    "Link": {
+      "description": "un link usado para hypermedia",
+      "properties": {
+        "href": {
+          "description": "la URI del link",
+          "example": "http://foo.com/bar",
+          "format": "uri",
+          "type": "string"
+        },
+        "verb": {
+          "description": "el verbo a usar en el link",
+          "enum": [
+            "GET",
+            "POST",
+            "PUT",
+            "PATCH",
+            "DELETE"
+          ],
+          "example": "GET",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Pago": {
+      "description": "estado del pago de un pedido",
+      "properties": {
+        "status": {
+          "enum": [
+            "pendiente de pago",
+            "pago en proceso",
+            "pago aceptado",
+            "pago fallado"
+          ],
+          "example": "pago aceptado",
+          "type": "string"
+        }
+      },
+      "required": [
+        "status"
+      ],
+      "type": "object"
+    },
+    "Pedido": {
+      "description": "un pedido de helados",
+      "properties": {
+        "_links": {
+          "description": "hypermedia links de un pedido",
+          "properties": {
+            "pagar": {
+              "$ref": "#/definitions/Link"
+            },
+            "pago": {
+              "$ref": "#/definitions/Link"
+            },
+            "potes": {
+              "$ref": "#/definitions/Link"
+            }
+          },
+          "type": "object"
+        },
+        "direccion_entrega": {
+          "description": "dirección en la que se ha de entregar este pedido",
+          "example": "Lavalleja 244 4C, CABA",
+          "type": "string"
+        },
+        "id": {
+          "description": "identificador de este pedido",
+          "example": 22,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "id",
+        "direccion_entrega"
+      ],
+      "type": "object"
+    },
+    "PesoDePote": {
+      "description": "peso de un pote de helado en gramos",
+      "enum": [
+        "1000",
+        "500",
+        "250"
+      ],
+      "example": "500",
+      "type": "string"
+    },
+    "Pote": {
+      "description": "un pote de helado dentro de un pedido",
+      "properties": {
+        "_links": {
+          "description": "hypermedia links de un pote",
+          "properties": {
+            "borrar": {
+              "$ref": "#/definitions/Link"
+            },
+            "pedido": {
+              "$ref": "#/definitions/Link"
+            }
+          },
+          "type": "object"
+        },
+        "gustos": {
+          "description": "los gustos de helado en este pote",
+          "items": {
+            "properties": {
+              "_links": {
+                "description": "hypermedia links de un gusto dentro de un pote",
+                "properties": {
+                  "self": {
+                    "$ref": "#/definitions/Link"
+                  }
+                },
+                "type": "object"
+              },
+              "id": {
+                "description": "el id del gusto de helado en este pote",
+                "example": "ddl",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "id": {
+          "description": "identificador de este pote dentro del pedido",
+          "example": 1,
+          "type": "integer"
+        },
+        "peso": {
+          "$ref": "#/definitions/PesoDePote"
+        }
+      },
+      "required": [
+        "id",
+        "peso",
+        "gustos"
+      ],
+      "type": "object"
+    },
+    "TipoDeGusto": {
+      "description": "categoría de gustos de helado",
+      "enum": [
+        "chocolates",
+        "dulce de leches",
+        "cremas",
+        "frutas"
+      ],
+      "example": "dulce de leches",
+      "type": "string"
+    }
+  },
+  "x-components": {
+    "parameters": {
+      "pedidoId": {
+        "description": "id del pedido",
+        "in": "path",
+        "name": "pedidoId",
+        "required": true,
+        "type": "integer"
+      },
+      "poteId": {
+        "description": "id del pote",
+        "in": "path",
+        "name": "poteId",
+        "required": true,
+        "type": "integer"
+      }
+    }
+  }
+}

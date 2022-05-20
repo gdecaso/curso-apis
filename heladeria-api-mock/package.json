@@ -1,0 +1,15 @@
+{
+  "name": "api-mock",
+  "version": "1.0.0",
+  "description": "API Mocks para la heladeria Apilia",
+  "main": "mock.js",
+  "dependencies": {
+    "openapi-mock-express-middleware": "^4.0.1",
+    "swagger-express-middleware": "^4.0.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
