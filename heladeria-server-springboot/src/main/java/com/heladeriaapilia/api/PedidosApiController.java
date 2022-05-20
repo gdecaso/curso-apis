@@ -1,17 +1,16 @@
 package com.heladeriaapilia.api;
 
-import com.heladeriaapilia.api.exception.BadRequestException;
-import com.heladeriaapilia.api.mapper.PedidoMapper;
+import com.heladeriaapilia.api.dto.DatosDePago;
+import com.heladeriaapilia.api.dto.Pago;
 import com.heladeriaapilia.api.dto.Pedido;
 import com.heladeriaapilia.api.dto.PedidoIdPotesBody;
 import com.heladeriaapilia.api.dto.PedidosBody;
-import com.heladeriaapilia.api.dto.Pote;
-import com.heladeriaapilia.repository.PedidoData;
-import com.heladeriaapilia.service.GustoService;
-import com.heladeriaapilia.api.dto.DatosDePago;
-import com.heladeriaapilia.api.dto.Pago;
 import com.heladeriaapilia.api.dto.PedidosPedidoIdBody;
+import com.heladeriaapilia.api.dto.Pote;
+import com.heladeriaapilia.api.mapper.PedidoMapper;
+import com.heladeriaapilia.repository.PedidoData;
 import com.heladeriaapilia.repository.PoteData;
+import com.heladeriaapilia.service.GustoService;
 import com.heladeriaapilia.service.PedidoService;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
@@ -77,13 +76,7 @@ public class PedidosApiController implements PedidosApi {
         Optional<PedidoData> maybePedido = pedidoService.findPedidoById(pedidoId);
         if (maybePedido.isPresent()) {
             PedidoData pedido = maybePedido.get();
-            List<String> gustos = body.getGustos();
-            for (String gusto : gustos) {
-                if (!gustoService.getGustoById(gusto).isPresent()) {
-                    throw new BadRequestException("Gusto desconocido " + gusto);
-                }
-            }
-            PoteData pote = pedidoService.addPoteToPedido(pedido, pedidoMapper.apiToData(body.getPeso()), gustos);
+            PoteData pote = pedidoService.addPoteToPedido(pedido, pedidoMapper.apiToData(body.getPeso()), body.getGustos());
             return new ResponseEntity<>(pedidoMapper.dataToApi(pote), HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
