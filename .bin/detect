@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-# bin/detect <build-dir>
-
-# used for inline heroku buildpack
-
-echo "Buildpack para un subdir"
-exit 0
