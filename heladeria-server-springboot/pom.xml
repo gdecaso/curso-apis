@@ -66,6 +66,12 @@
         </dependency>
 
         <dependency>
+            <groupId>com.moesif.servlet</groupId>
+            <artifactId>moesif-servlet</artifactId>
+            <version>1.7.2</version>
+        </dependency>
+
+        <dependency>
             <groupId>com.github.joschi.jackson</groupId>
             <artifactId>jackson-datatype-threetenbp</artifactId>
             <version>2.6.4</version>
