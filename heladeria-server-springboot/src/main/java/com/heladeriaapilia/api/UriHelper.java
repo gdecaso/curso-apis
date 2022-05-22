@@ -33,7 +33,7 @@ public class UriHelper {
         return String.format("%s://%s:%d%s%s",
                 request.getScheme(),
                 request.getServerName(),
-                request.getLocalPort(),
+                request.getServerPort(),
                 request.getContextPath(),
                 suffix);
     }
