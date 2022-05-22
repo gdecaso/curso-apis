@@ -34,6 +34,11 @@ public class PedidosApiController implements PedidosApi {
 
     private static final Logger log = LoggerFactory.getLogger(PedidosApiController.class);
 
+    public static final String PEDIDO_RESOURCE_PATH = "/pedidos";
+    public static final String POTE_RESOURCE_PATH = "/potes";
+
+    private final UriHelper uriHelper;
+
     private final PedidoMapper pedidoMapper;
 
     private final PedidoService pedidoService;
@@ -42,7 +47,8 @@ public class PedidosApiController implements PedidosApi {
     private final HttpServletRequest request;
 
     @org.springframework.beans.factory.annotation.Autowired
-    public PedidosApiController(PedidoMapper pedidoMapper, PedidoService pedidoService, GustoService gustoService, HttpServletRequest request) {
+    public PedidosApiController(UriHelper uriHelper, PedidoMapper pedidoMapper, PedidoService pedidoService, GustoService gustoService, HttpServletRequest request) {
+        this.uriHelper = uriHelper;
         this.pedidoMapper = pedidoMapper;
         this.pedidoService = pedidoService;
         this.gustoService = gustoService;
@@ -55,8 +61,8 @@ public class PedidosApiController implements PedidosApi {
             @PathVariable("pedidoId") Integer pedidoId) {
         return pedidoService.findPedidoById(pedidoId)
                 .map(pedidoMapper::dataToApiPedido)
-                .map(pedido -> new ResponseEntity<>(pedido, HttpStatus.OK))
-                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+                .map(pedido -> ResponseEntity.ok(pedido))
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @Override
@@ -66,8 +72,8 @@ public class PedidosApiController implements PedidosApi {
         return pedidoService.findPedidoById(pedidoId)
                 .map(PedidoData::getPotes)
                 .map(pedidoMapper::dataToApiPotes)
-                .map(pedido -> new ResponseEntity<>(pedido, HttpStatus.OK))
-                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+                .map(pedido -> ResponseEntity.ok(pedido))
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @Override
@@ -80,9 +86,9 @@ public class PedidosApiController implements PedidosApi {
         if (maybePedido.isPresent()) {
             PedidoData pedido = maybePedido.get();
             PoteData pote = pedidoService.addPoteToPedido(pedido, pedidoMapper.apiToDataPeso(body.getPeso()), body.getGustos());
-            return new ResponseEntity<>(pedidoMapper.dataToApiPote(pote), HttpStatus.OK);
+            return ResponseEntity.ok(pedidoMapper.dataToApiPote(pote));
         }
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return ResponseEntity.notFound().build();
     }
 
     @Override
@@ -100,10 +106,10 @@ public class PedidosApiController implements PedidosApi {
             if (maybePote.isPresent()) {
                 PoteData pote = maybePote.get();
                 pedidoService.removePoteFromPedido(pedido, pote);
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+                return ResponseEntity.noContent().build();
             }
         }
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return ResponseEntity.notFound().build();
     }
 
     @Override
@@ -116,9 +122,9 @@ public class PedidosApiController implements PedidosApi {
         if (maybePedido.isPresent()) {
             PedidoData pedido = maybePedido.get();
             pedido = pedidoService.updateDireccionDeEntrega(pedido, body.getDireccionEntrega());
-            return new ResponseEntity<>(pedidoMapper.dataToApiPedido(pedido), HttpStatus.OK);
+            return ResponseEntity.ok(pedidoMapper.dataToApiPedido(pedido));
         }
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return ResponseEntity.notFound().build();
     }
 
     @Override
@@ -126,7 +132,8 @@ public class PedidosApiController implements PedidosApi {
             @Parameter(in = ParameterIn.DEFAULT, description = "", schema=@Schema())
             @Valid @RequestBody PedidosBody body) {
         PedidoData pedido = pedidoService.createPedido(body.getDireccionEntrega());
-        return new ResponseEntity<>(pedidoMapper.dataToApiPedido(pedido), HttpStatus.CREATED);
+        return ResponseEntity.created(uriHelper.baseUri(PEDIDO_RESOURCE_PATH + "/" + pedido.getId()))
+                .body(pedidoMapper.dataToApiPedido(pedido));
     }
 
     @Override

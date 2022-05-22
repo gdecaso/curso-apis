@@ -31,6 +31,20 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Gusto'
+  /gustos/{gustoId}:
+    get:
+      description: Ver un gusto particular
+      parameters:
+      - $ref: '#/components/parameters/gustoId'
+      responses:
+        '200':
+          description: El gusto seleccionado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Gusto'
+        '404':
+          description: No se conoce un gusto con tal id
   /pedidos:
     post:
       description: Crear un nuevo pedido a la dirección indicada
@@ -164,6 +178,13 @@ paths:
 
 components:
   parameters:
+    gustoId:
+      name: gustoId
+      in: path
+      description: id del gusto
+      required: true
+      schema:
+        type: string
     pedidoId:
       name: pedidoId
       in: path
