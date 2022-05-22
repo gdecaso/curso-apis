@@ -18,8 +18,7 @@ class RestAssuredTest {
   private Integer port;
 
   @Test
-  void hayDulceDeLeche() {
-
+  void tieneQueHaberDulceDeLeche() {
     RestAssured
             .given()
               .filter(new RequestLoggingFilter())
