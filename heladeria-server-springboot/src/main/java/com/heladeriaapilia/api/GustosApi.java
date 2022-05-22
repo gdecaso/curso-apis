@@ -6,7 +6,6 @@
 package com.heladeriaapilia.api;
 
 import com.heladeriaapilia.api.dto.Gusto;
-import com.heladeriaapilia.api.dto.Pedido;
 import com.heladeriaapilia.api.dto.TipoDeGusto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -31,7 +30,7 @@ import java.util.List;
 public interface GustosApi {
 
     @Operation(summary = "", description = "Ver un gusto particular", tags = {})
-    @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "El gusto ha sido hallado", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Pedido.class))), @ApiResponse(responseCode = "404", description = "No se conoce un gusto con tal id")})
+    @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "El gusto ha sido hallado", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Gusto.class))), @ApiResponse(responseCode = "404", description = "No se conoce un gusto con tal id")})
     @RequestMapping(value = "/gustos/{gustoId}", produces = {"application/json"}, method = RequestMethod.GET)
     ResponseEntity<Gusto> gustosGustoIdGet(@Parameter(in = ParameterIn.PATH, description = "id del gusto", required = true, schema = @Schema()) @PathVariable("gustoId") String gustoId);
 

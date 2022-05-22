@@ -32,7 +32,7 @@ public class UriHelper {
     public String baseUriStr(String suffix) {
         return String.format("%s://%s:%d%s%s",
                 request.getScheme(),
-                request.getLocalName(),
+                request.getServerName(),
                 request.getLocalPort(),
                 request.getContextPath(),
                 suffix);
