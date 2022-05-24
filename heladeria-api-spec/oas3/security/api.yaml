@@ -196,7 +196,7 @@ components:
     ApiKey:
       type: apiKey
       in: header
-      name: X-API-Key
+      name: x-api-key
   parameters:
     gustoId:
       name: gustoId
