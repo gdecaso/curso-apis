@@ -58,7 +58,7 @@
         ],
         "responses": {
           "200": {
-            "description": "La list ade pedidos",
+            "description": "La lista de pedidos",
             "schema": {
               "type": "array",
               "items": {
