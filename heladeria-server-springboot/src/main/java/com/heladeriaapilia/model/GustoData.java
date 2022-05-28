@@ -17,15 +17,15 @@ public class GustoData {
     private String id;
 
     @Column(nullable = false)
-    private String name;
+    private String nombre;
 
     @Enumerated
     @Column(nullable = false)
     private TipoDeGustoData tipo;
 
-    public GustoData(String id, String name, TipoDeGustoData tipo) {
+    public GustoData(String id, String nombre, TipoDeGustoData tipo) {
         this.id = id;
-        this.name = name;
+        this.nombre = nombre;
         this.tipo = tipo;
     }
 
@@ -35,8 +35,8 @@ public class GustoData {
         return id;
     }
 
-    public String getName() {
-        return name;
+    public String getNombre() {
+        return nombre;
     }
 
     public TipoDeGustoData getTipo() {
@@ -47,7 +47,7 @@ public class GustoData {
     public String toString() {
         return "GustoData{" +
                 "id='" + id + '\'' +
-                ", name='" + name + '\'' +
+                ", nombre='" + nombre + '\'' +
                 ", tipo=" + tipo +
                 '}';
     }

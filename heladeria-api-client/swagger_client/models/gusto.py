@@ -29,24 +29,24 @@ class Gusto(object):
     """
     swagger_types = {
         'id': 'str',
-        'name': 'str',
+        'nombre': 'str',
         'tipo': 'TipoDeGusto'
     }
 
     attribute_map = {
         'id': 'id',
-        'name': 'name',
+        'nombre': 'nombre',
         'tipo': 'tipo'
     }
 
-    def __init__(self, id=None, name=None, tipo=None):  # noqa: E501
+    def __init__(self, id=None, nombre=None, tipo=None):  # noqa: E501
         """Gusto - a model defined in Swagger"""  # noqa: E501
         self._id = None
-        self._name = None
+        self._nombre = None
         self._tipo = None
         self.discriminator = None
         self.id = id
-        self.name = name
+        self.nombre = nombre
         self.tipo = tipo
 
     @property
@@ -75,29 +75,29 @@ class Gusto(object):
         self._id = id
 
     @property
-    def name(self):
-        """Gets the name of this Gusto.  # noqa: E501
+    def nombre(self):
+        """Gets the nombre of this Gusto.  # noqa: E501
 
         nombre legible por humanos para este gusto  # noqa: E501
 
-        :return: The name of this Gusto.  # noqa: E501
+        :return: The nombre of this Gusto.  # noqa: E501
         :rtype: str
         """
-        return self._name
+        return self._nombre
 
-    @name.setter
-    def name(self, name):
-        """Sets the name of this Gusto.
+    @nombre.setter
+    def nombre(self, nombre):
+        """Sets the nombre of this Gusto.
 
         nombre legible por humanos para este gusto  # noqa: E501
 
-        :param name: The name of this Gusto.  # noqa: E501
+        :param nombre: The nombre of this Gusto.  # noqa: E501
         :type: str
         """
-        if name is None:
-            raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
+        if nombre is None:
+            raise ValueError("Invalid value for `nombre`, must not be `None`")  # noqa: E501
 
-        self._name = name
+        self._nombre = nombre
 
     @property
     def tipo(self):

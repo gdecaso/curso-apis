@@ -1,0 +1,36 @@
+enum TipoDeGusto {
+    CHOCOLATES,
+    DULCE_DE_LECHES,
+    CREMAS,
+    FRUTAS,
+}
+
+type Gusto {
+    id: ID!
+    nombre: String!
+    tipo: TipoDeGusto!
+}
+
+type Pedido {
+    id: ID!
+    direccionDeEntrega: String!
+    potes: [Pote]!
+}
+
+enum PesoDePote {
+    _1000,
+    _500,
+    _250,
+}
+
+type Pote {
+    id: ID!
+    peso: PesoDePote!
+    gustos: [Gusto]!
+    pedido: Pedido!
+}
+
+type Query {
+    gustos: [Gusto]!
+    findPedido(id: ID!): Pedido
+}

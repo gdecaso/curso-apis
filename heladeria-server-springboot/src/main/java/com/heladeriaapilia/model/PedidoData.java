@@ -1,7 +1,11 @@
 package com.heladeriaapilia.model;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,7 +25,8 @@ public class PedidoData {
     @Column(nullable = false)
     private String direccionDeEntrega;
 
-    @OneToMany(mappedBy = "pedido")
+    @Fetch(FetchMode.SELECT)
+    @OneToMany(mappedBy = "pedido", fetch = FetchType.EAGER)
     private List<PoteData> potes = new ArrayList<>();
 
     public PedidoData(Integer id, String direccionDeEntrega) {

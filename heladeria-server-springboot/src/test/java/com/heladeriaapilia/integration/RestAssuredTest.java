@@ -41,7 +41,7 @@ class RestAssuredTest {
             .then()
               .statusCode(200)
               .body("[0].id", equalTo("ddl"))
-              .body("[0].name", equalTo("Dulce de leche"))
+              .body("[0].nombre", equalTo("Dulce de leche"))
               .body("[0].tipo", equalTo("dulce de leches"));
   }
 

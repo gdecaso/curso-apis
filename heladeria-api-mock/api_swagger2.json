@@ -437,7 +437,7 @@
           "example": "ddl",
           "type": "string"
         },
-        "name": {
+        "nombre": {
           "description": "nombre legible por humanos para este gusto",
           "example": "Dulce de leche",
           "type": "string"
@@ -448,7 +448,7 @@
       },
       "required": [
         "id",
-        "name",
+        "nombre",
         "tipo"
       ],
       "type": "object"

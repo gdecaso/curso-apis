@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -28,18 +29,18 @@ public class PoteData {
 
     @Enumerated
     @Column(nullable = false)
-    private PesoDePoteData pesoDePote;
+    private PesoDePoteData peso;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     private List<String> gustos;
 
     @ManyToOne
     @JoinColumn(name = "pedido_id", nullable = false)
     private PedidoData pedido;
 
-    public PoteData(Integer id, PesoDePoteData pesoDePote, List<String> gustos, PedidoData pedido) {
+    public PoteData(Integer id, PesoDePoteData peso, List<String> gustos, PedidoData pedido) {
         this.id = id;
-        this.pesoDePote = pesoDePote;
+        this.peso = peso;
         this.gustos = gustos;
         this.pedido = pedido;
     }
@@ -50,8 +51,8 @@ public class PoteData {
         return id;
     }
 
-    public PesoDePoteData getPesoDePote() {
-        return pesoDePote;
+    public PesoDePoteData getPeso() {
+        return peso;
     }
 
     public List<String> getGustos() {
@@ -66,7 +67,7 @@ public class PoteData {
     public String toString() {
         return "PoteData{" +
                 "id=" + id +
-                ", pesoDePote=" + pesoDePote +
+                ", peso=" + peso +
                 ", gustos=" + gustos +
                 ", pedido=" + pedido.getId() +
                 '}';

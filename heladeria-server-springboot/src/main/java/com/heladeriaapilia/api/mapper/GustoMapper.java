@@ -21,7 +21,7 @@ public class GustoMapper {
     public Gusto dataToApiGusto(GustoData gustoData) {
         return new Gusto()
                 .id(gustoData.getId())
-                .name(gustoData.getName())
+                .nombre(gustoData.getNombre())
                 .tipo(dataToApiTipo(gustoData.getTipo()));
     }
 

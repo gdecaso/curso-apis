@@ -217,13 +217,13 @@ components:
           type: string
           description: nombre corto que identifica este gusto
           example: ddl
-        name:
+        nombre:
           type: string
           description: nombre legible por humanos para este gusto
           example: Dulce de leche
         tipo:
           $ref: '#/components/schemas/TipoDeGusto'
-      required: [id, name, tipo]
+      required: [id, nombre, tipo]
     Pedido:
       description: un pedido de helados
       type: object

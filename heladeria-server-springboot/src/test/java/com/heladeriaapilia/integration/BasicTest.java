@@ -21,6 +21,6 @@ public class BasicTest {
 	@Test
 	public void tieneQueHaberDulceDeLeche() throws Exception {
 		assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/guidodecaso/heladeria/1.0.0/gustos", String.class))
-				.contains("\"name\":\"Dulce de leche\"");
+				.contains("\"nombre\":\"Dulce de leche\"");
 	}
 }

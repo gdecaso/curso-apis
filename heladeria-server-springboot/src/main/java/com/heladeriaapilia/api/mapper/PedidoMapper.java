@@ -62,7 +62,7 @@ public class PedidoMapper {
                                 ._links(new PoteLinks()
                                         .self(link(VerbEnum.GET, uriHelper.baseUriStr(GustosApiController.GUSTO_RESOURCE_PATH + "/" + gusto)))))
                         .collect(Collectors.toList()))
-                .peso(dataToApiPeso(poteData.getPesoDePote()))
+                .peso(dataToApiPeso(poteData.getPeso()))
                 ._links(new PoteLinks1()
                         .pedido(link(VerbEnum.GET, pedidoUriStr))
                         .borrar(link(VerbEnum.DELETE, pedidoUriStr + PedidosApiController.POTE_RESOURCE_PATH + "/" + poteData.getId()))

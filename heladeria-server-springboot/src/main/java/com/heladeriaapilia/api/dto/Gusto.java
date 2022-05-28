@@ -1,11 +1,12 @@
 package com.heladeriaapilia.api.dto;
 
-import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.validation.annotation.Validated;
+
 import javax.validation.Valid;
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotNull;
+import java.util.Objects;
 
 /**
  * un gusto de helado
@@ -19,8 +20,8 @@ public class Gusto   {
   @JsonProperty("id")
   private String id = null;
 
-  @JsonProperty("name")
-  private String name = null;
+  @JsonProperty("nombre")
+  private String nombre = null;
 
   @JsonProperty("tipo")
   private TipoDeGusto tipo = null;
@@ -45,24 +46,24 @@ public class Gusto   {
     this.id = id;
   }
 
-  public Gusto name(String name) {
-    this.name = name;
+  public Gusto nombre(String nombre) {
+    this.nombre = nombre;
     return this;
   }
 
   /**
    * nombre legible por humanos para este gusto
-   * @return name
+   * @return nombre
    **/
   @Schema(example = "Dulce de leche", required = true, description = "nombre legible por humanos para este gusto")
       @NotNull
 
-    public String getName() {
-    return name;
+    public String getNombre() {
+    return nombre;
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public void setNombre(String nombre) {
+    this.nombre = nombre;
   }
 
   public Gusto tipo(TipoDeGusto tipo) {
@@ -97,13 +98,13 @@ public class Gusto   {
     }
     Gusto gusto = (Gusto) o;
     return Objects.equals(this.id, gusto.id) &&
-        Objects.equals(this.name, gusto.name) &&
+        Objects.equals(this.nombre, gusto.nombre) &&
         Objects.equals(this.tipo, gusto.tipo);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, tipo);
+    return Objects.hash(id, nombre, tipo);
   }
 
   @Override
@@ -112,7 +113,7 @@ public class Gusto   {
     sb.append("class Gusto {\n");
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    nombre: ").append(toIndentedString(nombre)).append("\n");
     sb.append("    tipo: ").append(toIndentedString(tipo)).append("\n");
     sb.append("}");
     return sb.toString();
