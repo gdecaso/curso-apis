@@ -34,3 +34,7 @@ type Query {
     gustos: [Gusto]!
     findPedido(id: ID!): Pedido
 }
+
+type Mutation {
+    agregarPote(pedidoId: ID!, peso: PesoDePote!, gustoIds: [ID]!) : Pote!
+}
