@@ -13,6 +13,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.hamcrest.Matchers.hasSize;
@@ -36,16 +37,15 @@ public class GustosApiControllerTest {
 	@MockBean
 	private GustoService gustoService;
 
-	private static final List<GustoData> GUSTOS = List.of(
-			new GustoData("gusto1", "Gusto 1", TipoDeGustoData.CREMAS),
-			new GustoData("gusto2", "Gusto 2", TipoDeGustoData.CHOCOLATES));
-
 	@Autowired
 	private MockMvc mockMvc;
 
 	@BeforeEach
 	void setUp() {
-		when(gustoService.getGustos()).thenReturn(GUSTOS);
+		List<GustoData> gustos = new ArrayList<>();
+		gustos.add(new GustoData("gusto1", "Gusto 1", TipoDeGustoData.CREMAS));
+		gustos.add(new GustoData("gusto2", "Gusto 2", TipoDeGustoData.CHOCOLATES));
+		when(gustoService.getGustos()).thenReturn(gustos);
 	}
 
 	@Test

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import java.util.HashMap;
 import java.util.Map;
 
 @Order(Ordered.HIGHEST_PRECEDENCE)
@@ -17,6 +18,8 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
   
    @ExceptionHandler(BusinessLogicException.class)
    public ResponseEntity<Object> handleBusinessLogicException(BusinessLogicException e) {
-       return new ResponseEntity<>(Map.of("message", e.getMessage()), HttpStatus.BAD_REQUEST);
+       Map<String, String> errorMap = new HashMap<>();
+       errorMap.put("message", e.getMessage());
+       return new ResponseEntity<>(errorMap, HttpStatus.BAD_REQUEST);
    }
 }

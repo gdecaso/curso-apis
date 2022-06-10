@@ -5,7 +5,7 @@
     <version>1.0.0</version>
     <name>swagger-spring</name>
     <properties>
-        <java.version>11</java.version>
+        <java.version>8</java.version>
     </properties>
     <parent>
         <groupId>org.springframework.boot</groupId>

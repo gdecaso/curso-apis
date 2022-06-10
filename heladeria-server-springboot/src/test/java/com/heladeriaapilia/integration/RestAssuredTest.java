@@ -12,6 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.test.web.server.LocalServerPort;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import static org.hamcrest.Matchers.equalTo;
@@ -48,10 +49,12 @@ class RestAssuredTest {
   @Test
   void unPedidoRecienCreadoSeTieneQuePoderObtener() {
     String direccionEntrega = "Rivadavia 1234 5B";
+    Map<String, String> direccionEntregaMap = new HashMap<>();
+    direccionEntregaMap.put("direccion_entrega", direccionEntrega);
     ExtractableResponse<Response> pedidoCreado = RestAssured
             .given()
               .contentType(ContentType.JSON)
-              .body(Map.of("direccion_entrega", direccionEntrega))
+              .body(direccionEntregaMap)
             .when()
               .post(apiPath() + "/pedidos")
             .then()
