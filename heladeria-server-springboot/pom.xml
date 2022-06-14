@@ -28,10 +28,12 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
+        <!-- removed for EvoMaster
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
+        -->
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -50,17 +52,23 @@
             <artifactId>springfox-swagger-ui</artifactId>
             <version>3.0.0</version>
         </dependency>
+
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
+            <!-- downgraded for EvoMaster bug (fixed in next releases)
             <version>2.1.212</version>
+            -->
+            <version>1.4.200</version>
         </dependency>
 
+        <!-- commented out due to failures in EvoMaster controller
         <dependency>
             <groupId>com.moesif.servlet</groupId>
             <artifactId>moesif-servlet</artifactId>
             <version>1.7.2</version>
         </dependency>
+        -->
 
         <dependency>
             <groupId>com.github.joschi.jackson</groupId>
