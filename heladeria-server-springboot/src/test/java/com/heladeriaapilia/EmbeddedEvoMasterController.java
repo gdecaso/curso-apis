@@ -122,7 +122,7 @@ public class EmbeddedEvoMasterController extends EmbeddedSutController {
 
     @Override
     public void resetStateOfSUT() {
-        List<String> tablesToSkip = Collections.singletonList("gustos");
+        List<String> tablesToSkip = Collections.singletonList("GUSTO");
         DbCleaner.clearDatabase_H2(connection, tablesToSkip);
     }
 
