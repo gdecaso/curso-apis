@@ -16,8 +16,10 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class EmbeddedEvoMasterController extends EmbeddedSutController {
 
@@ -91,8 +93,7 @@ public class EmbeddedEvoMasterController extends EmbeddedSutController {
         ctx = SpringApplication.run(HeladeriaApiliaApiApplication.class, new String[]{
                 "--server.port=0",
                 "--spring.datasource.url=jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;",
-                "--spring.jpa.database-platform=org.hibernate.dialect.H2Dialect",
-
+                "--spring.jpa.database-platform=org.hibernate.dialect.H2Dialect"
         });
 
         if (connection != null) {
@@ -121,7 +122,8 @@ public class EmbeddedEvoMasterController extends EmbeddedSutController {
 
     @Override
     public void resetStateOfSUT() {
-        DbCleaner.clearDatabase_H2(connection);
+        List<String> tablesToSkip = Collections.singletonList("gustos");
+        DbCleaner.clearDatabase_H2(connection, tablesToSkip);
     }
 
 
