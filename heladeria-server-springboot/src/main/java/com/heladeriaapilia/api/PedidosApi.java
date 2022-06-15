@@ -35,32 +35,32 @@ import java.util.List;
 public interface PedidosApi {
 
     @Operation(summary = "", description = "Ver un pedido particular", tags = {})
-    @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "El pedido ha sido hallado", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Pedido.class))), @ApiResponse(responseCode = "404", description = "No se conoce un pedido con tal id")})
+    @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "El pedido ha sido hallado", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Pedido.class))), @ApiResponse(responseCode = "400", description = "Malformado"), @ApiResponse(responseCode = "404", description = "No se conoce un pedido con tal id")})
     @RequestMapping(value = "/pedidos/{pedidoId}", produces = {"application/json"}, method = RequestMethod.GET)
     ResponseEntity<Pedido> pedidosPedidoIdGet(@Parameter(in = ParameterIn.PATH, description = "id del pedido", required = true, schema = @Schema()) @PathVariable("pedidoId") Integer pedidoId);
 
     @Operation(summary = "", description = "Inicia el pago del pedido", tags = {})
-    @ApiResponses(value = {@ApiResponse(responseCode = "202", description = "Los datos de pago han sido recibidos y serán procesados"), @ApiResponse(responseCode = "404", description = "No se conoce un pedido con tal id")})
+    @ApiResponses(value = {@ApiResponse(responseCode = "202", description = "Los datos de pago han sido recibidos y serán procesados"), @ApiResponse(responseCode = "400", description = "Malformado"), @ApiResponse(responseCode = "404", description = "No se conoce un pedido con tal id")})
     @RequestMapping(value = "/pedidos/{pedidoId}/pagar", consumes = {"application/json"}, method = RequestMethod.POST)
     ResponseEntity<Void> pedidosPedidoIdPagarPost(@Parameter(in = ParameterIn.PATH, description = "id del pedido", required = true, schema = @Schema()) @PathVariable("pedidoId") Integer pedidoId, @Parameter(in = ParameterIn.DEFAULT, description = "", schema = @Schema()) @Valid @RequestBody DatosDePago body);
 
     @Operation(summary = "", description = "Ver el estado del pago de un pedido particular", tags = {})
-    @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "Este es el estado del pago del pedido", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Pago.class))), @ApiResponse(responseCode = "404", description = "No se conoce un pedido con tal id")})
+    @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "Este es el estado del pago del pedido", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Pago.class))), @ApiResponse(responseCode = "400", description = "Malformado"), @ApiResponse(responseCode = "404", description = "No se conoce un pedido con tal id")})
     @RequestMapping(value = "/pedidos/{pedidoId}/pago", produces = {"application/json"}, method = RequestMethod.GET)
     ResponseEntity<Pago> pedidosPedidoIdPagoGet(@Parameter(in = ParameterIn.PATH, description = "id del pedido", required = true, schema = @Schema()) @PathVariable("pedidoId") Integer pedidoId);
 
     @Operation(summary = "", description = "Lista los potes que componen un pedido", tags = {})
-    @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "Los potes del pedido", content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Pote.class)))), @ApiResponse(responseCode = "404", description = "No se conoce un pedido con tal id")})
+    @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "Los potes del pedido", content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Pote.class)))), @ApiResponse(responseCode = "400", description = "Malformado"), @ApiResponse(responseCode = "404", description = "No se conoce un pedido con tal id")})
     @RequestMapping(value = "/pedidos/{pedidoId}/potes", produces = {"application/json"}, method = RequestMethod.GET)
     ResponseEntity<List<Pote>> pedidosPedidoIdPotesGet(@Parameter(in = ParameterIn.PATH, description = "id del pedido", required = true, schema = @Schema()) @PathVariable("pedidoId") Integer pedidoId);
 
     @Operation(summary = "", description = "Agrega un pote a un pedido", tags = {})
-    @ApiResponses(value = {@ApiResponse(responseCode = "201", description = "El pote fue agregado al pedido", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Pote.class))), @ApiResponse(responseCode = "404", description = "No se conoce un pedido con tal id")})
+    @ApiResponses(value = {@ApiResponse(responseCode = "201", description = "El pote fue agregado al pedido", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Pote.class))), @ApiResponse(responseCode = "400", description = "Malformado"),@ApiResponse(responseCode = "404", description = "No se conoce un pedido con tal id")})
     @RequestMapping(value = "/pedidos/{pedidoId}/potes", produces = {"application/json"}, consumes = {"application/json"}, method = RequestMethod.POST)
     ResponseEntity<Pote> pedidosPedidoIdPotesPost(@Parameter(in = ParameterIn.PATH, description = "id del pedido", required = true, schema = @Schema()) @PathVariable("pedidoId") Integer pedidoId, @Parameter(in = ParameterIn.DEFAULT, description = "", schema = @Schema()) @Valid @RequestBody PedidoIdPotesBody body);
 
     @Operation(summary = "", description = "quitar un pote de un pedido", tags = {})
-    @ApiResponses(value = {@ApiResponse(responseCode = "204", description = "El pote fue quitado del pedido"), @ApiResponse(responseCode = "404", description = "No se conoce un pedido y/o pote con tal id")})
+    @ApiResponses(value = {@ApiResponse(responseCode = "204", description = "El pote fue quitado del pedido"), @ApiResponse(responseCode = "400", description = "Malformado"),@ApiResponse(responseCode = "404", description = "No se conoce un pedido y/o pote con tal id")})
     @RequestMapping(value = "/pedidos/{pedidoId}/potes/{poteId}", method = RequestMethod.DELETE)
     ResponseEntity<Void> pedidosPedidoIdPotesPoteIdDelete(@Parameter(in = ParameterIn.PATH, description = "id del pedido", required = true, schema = @Schema()) @PathVariable("pedidoId") Integer pedidoId, @Parameter(in = ParameterIn.PATH, description = "id del pote", required = true, schema = @Schema()) @PathVariable("poteId") Integer poteId);
 
