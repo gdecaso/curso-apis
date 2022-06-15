@@ -50,7 +50,7 @@ public class EmbeddedEvoMasterController extends EmbeddedSutController {
 
     @Override
     public boolean isSutRunning() {
-        return false;
+       return ctx!=null && ctx.isRunning();
     }
 
     @Override
