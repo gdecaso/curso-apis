@@ -7,6 +7,7 @@ import org.evomaster.client.java.controller.api.dto.SutInfoDto;
 import org.evomaster.client.java.controller.db.DbCleaner;
 import org.evomaster.client.java.controller.db.QueryResult;
 import org.evomaster.client.java.controller.db.SqlScriptRunner;
+import org.evomaster.client.java.controller.internal.db.DbSpecification;
 import org.evomaster.client.java.controller.problem.ProblemInfo;
 import org.evomaster.client.java.controller.problem.RestProblem;
 import org.springframework.boot.SpringApplication;
@@ -64,11 +65,6 @@ public class EmbeddedEvoMasterController extends EmbeddedSutController {
         return null;
     }
 
-    @Override
-    public Connection getConnection() {
-        return connection;
-    }
-
     protected int getSutPort() {
         return (Integer) ((Map) ctx.getEnvironment()
                 .getPropertySources().get("server.ports").getSource())
@@ -90,11 +86,11 @@ public class EmbeddedEvoMasterController extends EmbeddedSutController {
 
     @Override
     public String startSut() {
-        ctx = SpringApplication.run(HeladeriaApiliaApiApplication.class, new String[]{
+        ctx = SpringApplication.run(HeladeriaApiliaApiApplication.class,
                 "--server.port=0",
                 "--spring.datasource.url=jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;",
                 "--spring.jpa.database-platform=org.hibernate.dialect.H2Dialect"
-        });
+        );
 
         if (connection != null) {
             try {
@@ -124,6 +120,16 @@ public class EmbeddedEvoMasterController extends EmbeddedSutController {
     public void resetStateOfSUT() {
         List<String> tablesToSkip = Collections.singletonList("GUSTO");
         DbCleaner.clearDatabase_H2(connection, tablesToSkip);
+    }
+
+    @Override
+    public boolean handleLocalAuthenticationSetup(String authenticationInfo) {
+        return super.handleLocalAuthenticationSetup(authenticationInfo);
+    }
+
+    @Override
+    public List<DbSpecification> getDbSpecifications() {
+        return null;
     }
 
 

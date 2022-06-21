@@ -17,12 +17,11 @@ import io.swagger.v3.oas.models.info.License;
 public class SwaggerDocumentationConfig {
 
     @Bean
-    public Docket customImplementation(){
+    public Docket customImplementation() {
         return new Docket(DocumentationType.OAS_30)
                 .select()
-//                .apis(RequestHandlerSelectors.basePackage("com.heladeriaapilia.api"))
-                    .apis(RequestHandlerSelectors.basePackage("com.heladeriaapilia"))
-                    .build()
+                .apis(RequestHandlerSelectors.basePackage("com.heladeriaapilia.api"))
+                .build()
                 .directModelSubstitute(org.threeten.bp.LocalDate.class, java.sql.Date.class)
                 .directModelSubstitute(org.threeten.bp.OffsetDateTime.class, java.util.Date.class)
                 .apiInfo(apiInfo());
@@ -30,27 +29,27 @@ public class SwaggerDocumentationConfig {
 
     ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-            .title("Heladería Via Apilia")
-            .license("Apache 2.0")
-            .licenseUrl("http://www.apache.org/licenses/LICENSE-2.0.html")
-            .termsOfServiceUrl("")
-            .version("1.0.0")
-            .contact(new Contact("","", "devs@heladeria-apilia.com"))
-            .build();
+                .title("Heladería Via Apilia")
+                .license("Apache 2.0")
+                .licenseUrl("http://www.apache.org/licenses/LICENSE-2.0.html")
+                .termsOfServiceUrl("")
+                .version("1.0.0")
+                .contact(new Contact("", "", "devs@heladeria-apilia.com"))
+                .build();
     }
 
     @Bean
     public OpenAPI openApi() {
         return new OpenAPI()
-            .info(new Info()
-                .title("Heladería Via Apilia")
-                .termsOfService("")
-                .version("1.0.0")
-                .license(new License()
-                    .name("Apache 2.0")
-                    .url("http://www.apache.org/licenses/LICENSE-2.0.html"))
-                .contact(new io.swagger.v3.oas.models.info.Contact()
-                    .email("devs@heladeria-apilia.com")));
+                .info(new Info()
+                        .title("Heladería Via Apilia")
+                        .termsOfService("")
+                        .version("1.0.0")
+                        .license(new License()
+                                .name("Apache 2.0")
+                                .url("http://www.apache.org/licenses/LICENSE-2.0.html"))
+                        .contact(new io.swagger.v3.oas.models.info.Contact()
+                                .email("devs@heladeria-apilia.com")));
     }
 
 }

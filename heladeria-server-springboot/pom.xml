@@ -56,10 +56,7 @@
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
-            <!-- downgraded for EvoMaster bug (fixed in next releases)
             <version>2.1.212</version>
-            -->
-            <version>1.4.200</version>
         </dependency>
 
         <!-- commented out due to failures in EvoMaster controller
@@ -117,7 +114,7 @@
         <dependency>
             <groupId>org.evomaster</groupId>
             <artifactId>evomaster-client-java-controller</artifactId>
-            <version>1.4.0</version>
+            <version>1.5.1-SNAPSHOT</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

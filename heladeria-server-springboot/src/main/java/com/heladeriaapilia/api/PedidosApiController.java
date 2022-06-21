@@ -85,7 +85,8 @@ public class PedidosApiController implements PedidosApi {
         Optional<PedidoData> maybePedido = pedidoService.findPedidoById(pedidoId);
         if (maybePedido.isPresent()) {
             PedidoData pedido = maybePedido.get();
-            PoteData pote = pedidoService.addPoteToPedido(pedido, pedidoMapper.apiToDataPeso(body.getPeso()), body.getGustos());
+            PoteData.PesoDePoteData pesoDePote = pedidoMapper.apiToDataPeso(body.getPeso());
+            PoteData pote = pedidoService.addPoteToPedido(pedido, pesoDePote, body.getGustos());
             return ResponseEntity.ok(pedidoMapper.dataToApiPote(pote));
         }
         return ResponseEntity.notFound().build();
