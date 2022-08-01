@@ -1,0 +1,134 @@
+{
+	"info": {
+		"_postman_id": "eaca1b9c-f4b1-48d2-ad38-f373e547d72f",
+		"name": "OAuth demo Google Drive",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://accounts.google.com/o/oauth2/v2/auth?client_id={{oauth_client_id}}&redirect_uri=http://localhost:8080&response_type=code&scope=https://www.googleapis.com/auth/drive.metadata.readonly",
+					"protocol": "https",
+					"host": [
+						"accounts",
+						"google",
+						"com"
+					],
+					"path": [
+						"o",
+						"oauth2",
+						"v2",
+						"auth"
+					],
+					"query": [
+						{
+							"key": "client_id",
+							"value": "{{oauth_client_id}}"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "http://localhost:8080"
+						},
+						{
+							"key": "response_type",
+							"value": "code"
+						},
+						{
+							"key": "scope",
+							"value": "https://www.googleapis.com/auth/drive.metadata.readonly"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Token",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "client_id",
+							"value": "{{oauth_client_id}}",
+							"type": "default"
+						},
+						{
+							"key": "client_secret",
+							"value": "{{oauth_client_secret}}",
+							"type": "default"
+						},
+						{
+							"key": "code",
+							"value": "[poner codigo del paso previo aquí]",
+							"type": "default"
+						},
+						{
+							"key": "grant_type",
+							"value": "authorization_code",
+							"type": "default"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "http://localhost:8080",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://oauth2.googleapis.com/token",
+					"protocol": "https",
+					"host": [
+						"oauth2",
+						"googleapis",
+						"com"
+					],
+					"path": [
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Files",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer [poner token del paso previo aquí]",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "https://www.googleapis.com/drive/v2/files?q=fullText contains 'ECI'",
+					"protocol": "https",
+					"host": [
+						"www",
+						"googleapis",
+						"com"
+					],
+					"path": [
+						"drive",
+						"v2",
+						"files"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "fullText contains 'ECI'"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

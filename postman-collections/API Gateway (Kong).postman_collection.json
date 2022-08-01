@@ -1,0 +1,416 @@
+{
+	"info": {
+		"_postman_id": "ba052105-6f02-482e-8d5d-5d89d6af79de",
+		"name": "API Gateway (Kong)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create service",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "heladeria",
+							"type": "default"
+						},
+						{
+							"key": "url",
+							"value": "http://localhost:8080",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8001/services/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8001",
+					"path": [
+						"services",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List services",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:8001/services/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8001",
+					"path": [
+						"services",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create route",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "hosts[]",
+							"value": "heladeria.com",
+							"type": "default"
+						},
+						{
+							"key": "name",
+							"value": "main-route",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8001/services/heladeria/routes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8001",
+					"path": [
+						"services",
+						"heladeria",
+						"routes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List routes",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:8001/services/heladeria/routes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8001",
+					"path": [
+						"services",
+						"heladeria",
+						"routes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List gustos [VIA PROXY]",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Host",
+						"value": "heladeria.com",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:8000/guidodecaso/heladeria/1.0.0/gustos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"guidodecaso",
+						"heladeria",
+						"1.0.0",
+						"gustos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add apikey plugin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "key-auth",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8001/services/heladeria/plugins",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8001",
+					"path": [
+						"services",
+						"heladeria",
+						"plugins"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create consumer",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "homerosimpson",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8001/consumers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8001",
+					"path": [
+						"consumers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create credentials",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "key",
+							"value": "rosquillas",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8001/consumers/homerosimpson/key-auth",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8001",
+					"path": [
+						"consumers",
+						"homerosimpson",
+						"key-auth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List gustos [c/ apikey VIA PROXY]",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Host",
+						"value": "heladeria.com",
+						"type": "default"
+					},
+					{
+						"key": "apikey",
+						"value": "rosquillas",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:8000/guidodecaso/heladeria/1.0.0/gustos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"guidodecaso",
+						"heladeria",
+						"1.0.0",
+						"gustos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add ratelimit plugin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "rate-limiting",
+							"type": "default"
+						},
+						{
+							"key": "config.minute",
+							"value": "5",
+							"type": "default"
+						},
+						{
+							"key": "config.policy",
+							"value": "local",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8001/services/heladeria/plugins",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8001",
+					"path": [
+						"services",
+						"heladeria",
+						"plugins"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[Cleanup] Delete credentials",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:8001/consumers/homerosimpson",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8001",
+					"path": [
+						"consumers",
+						"homerosimpson"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[Cleanup] Delete route",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:8001/services/heladeria/routes/main-route",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8001",
+					"path": [
+						"services",
+						"heladeria",
+						"routes",
+						"main-route"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[Cleanup] Delete service",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:8001/services/heladeria",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8001",
+					"path": [
+						"services",
+						"heladeria"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

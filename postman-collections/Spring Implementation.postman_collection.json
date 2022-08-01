@@ -1,0 +1,254 @@
+{
+	"info": {
+		"_postman_id": "ceb55138-88a8-4d3d-a0c9-792d531e12cd",
+		"name": "Spring Implementation",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "gustos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/guidodecaso/heladeria/1.0.0/gustos",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"guidodecaso",
+						"heladeria",
+						"1.0.0",
+						"gustos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "gustos/ddl",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/guidodecaso/heladeria/1.0.0/gustos/ddl",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"guidodecaso",
+						"heladeria",
+						"1.0.0",
+						"gustos",
+						"ddl"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "pedidos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/guidodecaso/heladeria/1.0.0/pedidos",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"guidodecaso",
+						"heladeria",
+						"1.0.0",
+						"pedidos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "pedidos",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"direccion_entrega\": \"Boyaca 2526 PB 3\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/guidodecaso/heladeria/1.0.0/pedidos",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"guidodecaso",
+						"heladeria",
+						"1.0.0",
+						"pedidos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "pedidos/?/potes gusto desconocido Copy",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"peso\": \"500\",\n    \"gustos\": [\"ddl\", \"pist\"]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/guidodecaso/heladeria/1.0.0/pedidos/1/potes",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"guidodecaso",
+						"heladeria",
+						"1.0.0",
+						"pedidos",
+						"1",
+						"potes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "pedidos/?/potes",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"peso\": \"500\",\n    \"gustos\": [\"ddl\", \"choco_am\"]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/guidodecaso/heladeria/1.0.0/pedidos/1/potes",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"guidodecaso",
+						"heladeria",
+						"1.0.0",
+						"pedidos",
+						"1",
+						"potes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "pedidos/?/potes",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/guidodecaso/heladeria/1.0.0/pedidos/1/potes",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"guidodecaso",
+						"heladeria",
+						"1.0.0",
+						"pedidos",
+						"1",
+						"potes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "pedidos/?/potes Copy",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/guidodecaso/heladeria/1.0.0/pedidos/1/potes/2",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"guidodecaso",
+						"heladeria",
+						"1.0.0",
+						"pedidos",
+						"1",
+						"potes",
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "http://localhost:8080",
+			"type": "default"
+		}
+	]
+}

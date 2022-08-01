@@ -1,0 +1,69 @@
+{
+	"info": {
+		"_postman_id": "6ca6269c-af83-46ba-915b-fde0b30cd9c8",
+		"name": "Content Negotiation",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "PetShop XML",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/xml",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "https://virtserver.swaggerhub.com/apple313/Petstore-Example/1.0.0/pet/22",
+					"protocol": "https",
+					"host": [
+						"virtserver",
+						"swaggerhub",
+						"com"
+					],
+					"path": [
+						"apple313",
+						"Petstore-Example",
+						"1.0.0",
+						"pet",
+						"22"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PetShop JSON",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "https://virtserver.swaggerhub.com/apple313/Petstore-Example/1.0.0/pet/22",
+					"protocol": "https",
+					"host": [
+						"virtserver",
+						"swaggerhub",
+						"com"
+					],
+					"path": [
+						"apple313",
+						"Petstore-Example",
+						"1.0.0",
+						"pet",
+						"22"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

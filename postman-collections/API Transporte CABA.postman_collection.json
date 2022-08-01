@@ -1,0 +1,55 @@
+{
+	"info": {
+		"_postman_id": "04cb125c-f1d1-47ba-991c-f6ecf0b86133",
+		"name": "API Transporte CABA",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Vehicle positions",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://apitransporte.buenosaires.gob.ar/colectivos/vehiclePositionsSimple?&client_id={{CABA-client-id}}&client_secret={{CABA-client-secret}}",
+					"protocol": "https",
+					"host": [
+						"apitransporte",
+						"buenosaires",
+						"gob",
+						"ar"
+					],
+					"path": [
+						"colectivos",
+						"vehiclePositionsSimple"
+					],
+					"query": [
+						{
+							"key": null,
+							"value": null
+						},
+						{
+							"key": "client_id",
+							"value": "{{CABA-client-id}}"
+						},
+						{
+							"key": "client_secret",
+							"value": "{{CABA-client-secret}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "CABA-client-secret",
+			"value": "[poner tu client-secret CABA aquí]"
+		},
+		{
+			"key": "CABA-client-id",
+			"value": "[poner tu client-id CABA aquí]"
+		}
+	]
+}
