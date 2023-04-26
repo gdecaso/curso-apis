@@ -23,7 +23,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         httpSecurity
 //                .antMatcher("/pedidos/**")
 //                .authorizeRequests()
-//                .anyRequest()
+//                .anyRequest() 
 //                .authenticated()
 //                .and()
 //                .addFilterBefore(
