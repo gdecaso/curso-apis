@@ -12,6 +12,6 @@ public class MonitoringConfig extends WebMvcConfigurerAdapter {
 
   @Bean
   public Filter moesifFilter() {
-    return new MoesifFilter("eyJhcHAiOiIzMTU6MjMwIiwidmVyIjoiMi4wIiwib3JnIjoiNTg2OjE5NCIsImlhdCI6MTY1MTM2MzIwMH0.WzvR_jZ1wkXsGnjpWaE2breDd7L3gflC7zBFCdlqOuI");
+    return new MoesifFilter("eyJhcHAiOiI2NjA6NDA0IiwidmVyIjoiMi4wIiwib3JnIjoiODg6MjExNiIsImlhdCI6MTY4MDMwNzIwMH0.91J4gbS0Y-Daqa0tM8ZVU2KAbAMgxj-CCSw3joWjATQ");
   }
 }
