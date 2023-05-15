@@ -114,8 +114,9 @@
         <dependency>
             <groupId>org.evomaster</groupId>
             <artifactId>evomaster-client-java-controller</artifactId>
-            <version>1.5.1-SNAPSHOT</version>
-            <scope>test</scope>
+            <version>1.6.2-SNAPSHOT</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/test/resources/evomaster-client-java-controller-1.6.2-SNAPSHOT.jar</systemPath>
         </dependency>
     </dependencies>
 </project>
