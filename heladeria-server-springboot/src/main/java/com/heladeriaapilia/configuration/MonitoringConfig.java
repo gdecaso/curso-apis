@@ -1,6 +1,7 @@
 package com.heladeriaapilia.configuration;
 
 import com.moesif.servlet.MoesifFilter;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -10,8 +11,15 @@ import javax.servlet.Filter;
 @Configuration
 public class MonitoringConfig extends WebMvcConfigurerAdapter {
 
+  @Value("${MOESIF_APP_ID:null}")
+  private String moesifAppId;
+
   @Bean
   public Filter moesifFilter() {
-    return new MoesifFilter("eyJhcHAiOiI2NjA6NDA0IiwidmVyIjoiMi4wIiwib3JnIjoiODg6MjExNiIsImlhdCI6MTY4MDMwNzIwMH0.91J4gbS0Y-Daqa0tM8ZVU2KAbAMgxj-CCSw3joWjATQ");
+    if (moesifAppId != null) {
+      return new MoesifFilter(moesifAppId);
+    } else {
+      return (request, response, chain) -> chain.doFilter(request, response);
+    }
   }
 }
